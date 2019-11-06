@@ -1,13 +1,16 @@
 import React from "react";
 import "./App.css";
+import {CardData} from "./components/CardData";
 
 function App() {
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
+      <header className="header">
+        <h1>NASA Photo of the Day</h1>
+      </header>
+      <div className="container">
+        <CardData />
+      </div>
     </div>
   );
 }
