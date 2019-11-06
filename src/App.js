@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {CardData} from "./components/CardData";
+import Data from "./components/Data";
 
 function App() {
   return (
@@ -8,9 +8,7 @@ function App() {
       <header className="header">
         <h1>NASA Photo of the Day</h1>
       </header>
-      <div className="container">
-        <CardData />
-      </div>
+      <Data />
     </div>
   );
 }
