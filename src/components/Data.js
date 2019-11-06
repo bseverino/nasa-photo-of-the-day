@@ -46,7 +46,7 @@ function Data() {
                 <div className="menu menuYears hide">
                     {years.map((year, index) => {
                         return (<div className="option" key={index} onClick={() => {
-                            setYear(year);
+                            document.querySelector(".currentYear").innerText = year;
                             document.querySelector(".menuYears").classList.toggle("hide");
                         }}>{year}</div>)
                     })}
@@ -59,7 +59,7 @@ function Data() {
                     <div className="menu menuMonths hide">
                         {months.map((month, index) => {
                             return (<div className="option" key={index} onClick={() => {
-                                setMonth(month);
+                                document.querySelector(".currentMonth").innerText = month;
                                 document.querySelector(".menuMonths").classList.toggle("hide");
                             }}>{month}</div>)
                         })}
@@ -72,12 +72,17 @@ function Data() {
                     <div className="menu menuDays hide">
                         {days.map((day, index) => {
                             return (<div className="option" key={index} onClick={() => {
-                                setDay(day);
+                                document.querySelector(".currentDay").innerText = day;
                                 document.querySelector(".menuDays").classList.toggle("hide");
                             }}>{day}</div>)
                         })}
                     </div>
                 </div>
+                <button onClick={() => {
+                    setYear(document.querySelector(".currentYear").innerText);
+                    setMonth(document.querySelector(".currentMonth").innerText);
+                    setDay(document.querySelector(".currentDay").innerText);
+                }}>Change Date</button>
             </div>
             <Img url={data.url} />
             <Title title={data.title}/>
