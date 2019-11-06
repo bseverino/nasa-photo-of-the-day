@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.dropdowns {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
