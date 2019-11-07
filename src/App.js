@@ -10,9 +10,7 @@ const Header = styled.header`
   height: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  
-  font-family: 'Roboto Mono', monospace;
+  align-items: center;  
 `;
 
 const Wrapper = styled.section `

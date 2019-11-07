@@ -3,6 +3,7 @@
 .App {
   text-align: center;
   margin: 0 auto;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .App-logo {
@@ -16,12 +17,26 @@
   justify-content: center;
 }
 
+.card {
+  padding: 0 10px;
+}
+
 .date-button {
   margin-left: 10px;
 }
 
 .spinner {
   text-align: center;
+}
+
+.card-img {
+  max-width: 80%;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
 }
 
 /* .App-header {

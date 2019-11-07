@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import styled from 'styled-components';
 import { Col, Row, Card, CardText, CardBody, CardTitle, Button, ButtonGroup, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Img from "./data-components/Img";
 import {years, months, days} from "./date-selection/DateValues";
@@ -38,13 +37,14 @@ function Data() {
             })
             .catch(error => {
                 console.log("No data returned", error);
+                alert("Error: Not a valid date and/or image doesn't exist");
             });
     }, [day, month, year]);
 
     return (
         <Row className="card-container">
-            <Col xs="5">
-                <Card>
+            <Col sm="12" md="8" lg="6">
+                <Card className="card">
                     <CardBody>
                         <CardTitle>
                             <h3>{data.title}</h3>
@@ -100,6 +100,7 @@ function Data() {
                     <Img url={data.url} />
     
                     <CardBody>    
+                        <CardTitle>(click image to enlarge)</CardTitle>
                         <CardText>{data.explanation}</CardText>
                     </CardBody>
                 </Card>
