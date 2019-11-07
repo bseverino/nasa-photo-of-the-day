@@ -1,12 +1,11 @@
 import React from "react";
+import { CardImg, Spinner } from 'reactstrap';
 
 function Img(props){
-    if (!props.url) return <h3>Loading...</h3>;
+    if (!props.url) return <Spinner color="dark" />;
 
     return (
-        <div className="img-container">
-            <img className="img-today" alt="NASA" src={props.url} />
-        </div>
+        <CardImg top width="100%" alt="NASA" src={props.url} />
     );
 };
 

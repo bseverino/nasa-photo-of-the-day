@@ -1,28 +1,27 @@
-import React from "react";
-import {years, months, days} from "./DateValues";
+import React, {useState} from "react";
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 function Dropdown(props){
-    return (
-        <div className="Dropdowns">
-            <div className="dropdownYears">
-                <div className="currentYear">{props.yyyy}</div>
-                {years.map((year, index) => {
-                    return (<div className="option" key={index}>{year}</div>)
+    const [dropdownOpen, setOpen] = useState(false);
+
+    const toggle = () => setOpen(!dropdownOpen);
+
+    const array = props.array;
+
+    return (        
+        <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle caret className={`${props.type}`}>
+                {props.text}
+            </DropdownToggle>
+            <DropdownMenu>
+                {array.map((value, index) => {
+                    return (<DropdownItem key={index} onClick={() => {
+                        document.querySelector(`.${props.type}`).innerText = value;
+                    }}>{value}</DropdownItem>)
                 })}
-            </div>
-            <div className="dropdownMonths">
-                <div className="currentMonth">{props.mm}</div>
-                {months.map((month, index) => {
-                    return (<div className="option" key={index}>{month}</div>)
-                })}
-            </div>
-            <div className="dropdownDays">
-                <div className="currentDay">{props.dd}</div>
-                {days.map((day, index) => {
-                    return (<div className="option" key={index}>{day}</div>)
-                })}
-            </div>
-        </div>
+            </DropdownMenu>
+        </ButtonDropdown>
     );
 };
 

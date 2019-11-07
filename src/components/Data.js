@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import { Col, Row, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Img from "./data-components/Img";
 import Title from "./data-components/Title";
 import TodayDate from "./data-components/Date";
@@ -19,6 +20,13 @@ function Data() {
     const [month, setMonth] = useState(mm);
     const [year, setYear] = useState(yyyy);
 
+    const [dropdownOpen1, setOpen1] = useState(false);
+    const toggle1 = () => setOpen1(!dropdownOpen1);
+    const [dropdownOpen2, setOpen2] = useState(false);
+    const toggle2 = () => setOpen2(!dropdownOpen2);
+    const [dropdownOpen3, setOpen3] = useState(false);
+    const toggle3 = () => setOpen3(!dropdownOpen3);
+
     useEffect(() => {
         axios
             .get(`https://api.nasa.gov/planetary/apod?api_key=vs3GOayvKNnB2G3abHerQYB3f2QGhZ0jUTVcQxlL&date=${year}-${month}-${day}`)
@@ -37,59 +45,65 @@ function Data() {
     }, [day, month, year]);
 
     return (
-        <section>
-            <div className="dropdowns">
-            <div className="dropdown dropdownYears">
-                <div className="currentYear" onClick={() => {
-                        document.querySelector(".menuYears").classList.toggle("hide");
-                    }}>{year}</div>
-                <div className="menu menuYears hide">
-                    {years.map((year, index) => {
-                        return (<div className="option" key={index} onClick={() => {
-                            document.querySelector(".currentYear").innerText = year;
-                            document.querySelector(".menuYears").classList.toggle("hide");
-                        }}>{year}</div>)
-                    })}
-                </div>
-                </div>
-                <div className="dropdown dropdownMonths">
-                    <div className="currentMonth" onClick={() => {
-                        document.querySelector(".menuMonths").classList.toggle("hide");
-                    }}>{month}</div>
-                    <div className="menu menuMonths hide">
-                        {months.map((month, index) => {
-                            return (<div className="option" key={index} onClick={() => {
-                                document.querySelector(".currentMonth").innerText = month;
-                                document.querySelector(".menuMonths").classList.toggle("hide");
-                            }}>{month}</div>)
-                        })}
-                    </div>
-                </div>
-                <div className="dropdown dropdownDays">
-                    <div className="currentDay" onClick={() => {
-                        document.querySelector(".menuDays").classList.toggle("hide");
-                    }}>{day}</div>
-                    <div className="menu menuDays hide">
-                        {days.map((day, index) => {
-                            return (<div className="option" key={index} onClick={() => {
-                                document.querySelector(".currentDay").innerText = day;
-                                document.querySelector(".menuDays").classList.toggle("hide");
-                            }}>{day}</div>)
-                        })}
-                    </div>
-                </div>
-                <button onClick={() => {
-                    setYear(document.querySelector(".currentYear").innerText);
-                    setMonth(document.querySelector(".currentMonth").innerText);
-                    setDay(document.querySelector(".currentDay").innerText);
-                }}>Change Date</button>
-            </div>
+        <Col xs={{size: "6", offset: "auto"}}>
+        <Card>
+            <CardBody>
+                <CardTitle>{data.title}</CardTitle>
+
+                <ButtonGroup>
+                    <ButtonDropdown isOpen={dropdownOpen1} toggle={toggle1}>
+                        <DropdownToggle caret className="currentYear">
+                            {year}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {years.map((year, index) => {
+                                return (<DropdownItem key={index} onClick={() => {
+                                    document.querySelector(".currentYear").innerText = year;
+                                }}>{year}</DropdownItem>)
+                            })}
+                        </DropdownMenu>
+                    </ButtonDropdown>
+                    <ButtonDropdown isOpen={dropdownOpen2} toggle={toggle2}>
+                        <DropdownToggle caret className="currentMonth">
+                            {month}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {months.map((month, index) => {
+                                return (<DropdownItem key={index} onClick={() => {
+                                    document.querySelector(".currentMonth").innerText = month;
+                                }}>{month}</DropdownItem>)
+                            })}
+                        </DropdownMenu>
+                    </ButtonDropdown>
+                    <ButtonDropdown isOpen={dropdownOpen3} toggle={toggle3}>
+                        <DropdownToggle caret className="currentDay">
+                            {day}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {days.map((day, index) => {
+                                return (<DropdownItem key={index} onClick={() => {
+                                    document.querySelector(".currentDay").innerText = day;
+                                }}>{day}</DropdownItem>)
+                            })}
+                        </DropdownMenu>
+                    </ButtonDropdown>
+                </ButtonGroup>
+                <Button onClick={() => {
+                        setYear(document.querySelector(".currentYear").innerText);
+                        setMonth(document.querySelector(".currentMonth").innerText);
+                        setDay(document.querySelector(".currentDay").innerText);
+                    }}>Change Date
+                </Button>
+            </CardBody>
+
+            {/* <CardImg top width="100%" src={data.url} alt="NASA" />  */}
             <Img url={data.url} />
-            <Title title={data.title}/>
-            <TodayDate date={data.date} />
-            <Explanation explanation={data.explanation} />
-            {/* <Dropdown day={day} yyyy={yyyy} mm={mm} dd={dd} /> */}            
-        </section>
+
+            <CardBody>    
+                <CardText>{data.explanation}</CardText>
+            </CardBody>
+        </Card>
+        </Col>
     );
 };
 

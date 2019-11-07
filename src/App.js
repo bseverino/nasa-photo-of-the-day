@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Data from "./components/Data";
 
 function App() {
