@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
 .App {
   text-align: center;
+  margin: 0 auto;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .App-logo {
@@ -8,7 +12,34 @@
   pointer-events: none;
 }
 
-.App-header {
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  padding: 0 10px;
+}
+
+.date-button {
+  margin-left: 10px;
+}
+
+.spinner {
+  text-align: center;
+}
+
+.card-img {
+  max-width: 80%;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+}
+
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -30,4 +61,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
